@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,7 +54,7 @@ public class UploadController {
 		this.service = new UploadService();
 	}
 
-	@RequestMapping(path="Upload", method = RequestMethod.POST,consumes=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(path="Upload", method = RequestMethod.POST)
 	public void index(@RequestBody RequestBean reqBean) {
 		System.out.println("reqBean : \r\n" + reqBean);
 		try {
