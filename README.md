@@ -1,4 +1,4 @@
-#SpringPhotoGallery
+# SpringPhotoGallery
 
 クラウド対応画像ストアアプリ"[OsaStagram][1]"のサーバーアプリ"[PhotoGallery][2]"を、SpringFrameworkを使用することによってリファクタリングしました。
 
