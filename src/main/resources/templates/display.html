@@ -30,24 +30,26 @@ td {
 
 	<div ng-controller="UserController">
 	    <table class="table table-striped" ng-init="getUsersList()">
-	        <tr>
-	            <th></th>
-	            <th></th>
-	            <th></th>
-	            <th></th>
+	        <tr valign="middle" align="center">
+	            <th>Image</th>
+	            <th>URL</th>
+	            <th>Comment</th>
 	        </tr>
 	        
 	        <!--  Angular.jsによる繰り返し表示  -->
 	        <tr ng-repeat="photo in json">
-	            <td>&nbsp;</td>
 	            <td align="center">
 	              <a href="{{photo.url}}" target="_blank">
 	                <img alt="{{photo.alt}}" title="{{photo.alt}}" src="{{photo.url}}">
 	              </a>
 	              <br/>{{photo.alt}}
 	            </td>
-	            <td>&nbsp;</td>
-	            <td>&nbsp;</td>
+	            <td valign="middle">
+	              <a href="{{photo.url}}">{{photo.url}}</a>
+	            </td>
+	            <td valign="middle">
+	              {{photo.alt}}
+	            </td>
 	        </tr>
 	    </table>
 	</div>
