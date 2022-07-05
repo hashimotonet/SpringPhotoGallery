@@ -1,4 +1,4 @@
-package hashimotonet.controller;
+package hashimotonet;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import hashimotonet.service.ListImagesService;
 
 @Controller
-@RequestMapping(path="ListImages", method = RequestMethod.POST)
+@RequestMapping(path="/ListImages", method = RequestMethod.POST)
 public class ListController {
 	
 	@Autowired

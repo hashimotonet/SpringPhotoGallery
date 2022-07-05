@@ -77,7 +77,7 @@
  // 定数定義
  //---------------------------------------------
  // 保存を行うプログラムがあるURL
- const SAVE_URL = '/PhotoGallery/Upload';
+ const SAVE_URL = 'Upload';
 //---------------------------------------------
 //[event] ページ読み込み完了
 //---------------------------------------------
@@ -159,13 +159,13 @@ window.onload = ()=>{
       })
       .then((response)=>{
         if(response.status){
-          alert("送信に『成功』しました" );
+          alert("送信に『成功』しました");
           //setImage(json.result);    //json.resultにはファイル名が入っている
         }
         else{
       	  console.log(response.status);
           alert("送信に『失敗』しました");
-          console.log(`[error1]${error}`);
+          console.log(`[error1] ${json.result}`);
         }
       })
       .catch((error)=>{

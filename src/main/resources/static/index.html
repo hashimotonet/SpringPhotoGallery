@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" />
+<script type="text/javascript">
+function doSignOut() {
+    frm.action = "./SignOut";
+    frm.method = "post";
+    frm.submit();
+
+    return;
+}
+</script>
+</head>
+<body>
+<form name="frm" action="./SignIn" method="POST">
+    <input type="text" id="id" name="id" /><br/><br/>
+    <input type="password" id="password" name="password" /><br/><br/>
+    <input type="submit" value="Sign In" class="btn btn-primary btn-sm" /><br/><br/>
+    <input type="button" value= "Sign Out" class="btn btn-primary btn-sm"  onClick="javascript:doSignOut();" />
+</form>
+</body>
+</html>
