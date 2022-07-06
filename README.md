@@ -4,8 +4,6 @@
 
 
 
-http://localhost:8080/PhotoGallerySpring/
-
 [1]: https://github.com/hashimotonet/OsaStagram/
 [2]: https://github.com/hashimotonet/PhotoGallery/
 
