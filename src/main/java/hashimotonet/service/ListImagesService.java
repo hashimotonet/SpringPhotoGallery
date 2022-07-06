@@ -183,9 +183,7 @@ public class ListImagesService {
 
         // クライアントへ要求処理結果に関して応答を行う。
         request.setAttribute("id", id);
-        /*
-        PrintWriter out = response.getWriter();
-        */
+
         String output = null;//new JsonNode().encode(urls, true);
         ObjectMapper mapper = new ObjectMapper();
         output = mapper.writeValueAsString(urls);

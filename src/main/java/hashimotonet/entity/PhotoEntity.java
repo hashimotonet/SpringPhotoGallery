@@ -13,8 +13,9 @@ import javax.persistence.Table;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import lombok.Data;
 import lombok.ToString;
 
 /**
@@ -23,8 +24,8 @@ import lombok.ToString;
  */
 @Entity
 @Table(name = "photo")
-@Getter
-@Setter
+@Data
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @ToString
 public class PhotoEntity implements Example<String> {
 	/**

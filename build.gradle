@@ -40,6 +40,45 @@ dependencies {
 	runtimeOnly 'mysql:mysql-connector-java'
 	implementation("org.springframework.boot:spring-boot-starter-log4j2")
 	// https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils
+	// https://mvnrepository.com/artifact/jstl/jstl
+	implementation group: 'jstl', name: 'jstl', version: '1.2'
+	// https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
+	implementation group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '10.0.22'
+
+group = 'hashimotonet'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+    all {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+ }
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+ 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	annotationProcessor 'org.projectlombok:lombok'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+	// https://mvnrepository.com/artifact/commons-codec/commons-codec
+	implementation group: 'commons-codec', name: 'commons-codec', version: '1.15'
+	// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.4'
+	runtimeOnly 'mysql:mysql-connector-java'
+	implementation("org.springframework.boot:spring-boot-starter-log4j2")
+	// https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils
     //testImplementation 'junit:junit:4.1.1'
     //runtimeOnly 'org.apereo.cas:cas-server-support-validation:5.3.15.1'
 	// https://mvnrepository.com/artifact/net.shibboleth.tool/xmlsectool
@@ -48,6 +87,13 @@ dependencies {
 	implementation group: 'jstl', name: 'jstl', version: '1.2'
 	// https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
 	implementation group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '10.0.22'
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.7.1'
+}
+
+test {
+	useJUnitPlatform()
+}
 }
 
 test {
