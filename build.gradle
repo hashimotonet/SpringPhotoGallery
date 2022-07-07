@@ -45,10 +45,6 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
 	implementation group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '10.0.22'
 
-group = 'hashimotonet'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
-
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor

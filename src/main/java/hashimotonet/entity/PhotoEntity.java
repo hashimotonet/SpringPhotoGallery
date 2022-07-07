@@ -1,5 +1,5 @@
 /**
- * 
+ * Entity class for SpringPhotoGallery.
  */
 package hashimotonet.entity;
 
