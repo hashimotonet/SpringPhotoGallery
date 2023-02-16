@@ -58,7 +58,7 @@ public class UploadController {
 
 	@PostMapping
 	public String index(@RequestBody RequestBean reqBean) {
-		log.error("reqBean : \r\n" + reqBean);
+		log.debug("reqBean : \r\n" + reqBean);
 		try {
 			service.execute(request, reqBean);
 		} catch (Exception e) {

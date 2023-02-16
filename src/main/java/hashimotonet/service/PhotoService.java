@@ -3,6 +3,8 @@ package hashimotonet.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,11 @@ public class PhotoService {
 
 	private final PhotoRepository repository;
 	
+	/**
+	 * Logger.
+	 */
+    private Logger log = LogManager.getLogger(UploadService.class);
+
 	public PhotoService() {
 		this.repository = null;
 	}
@@ -40,7 +47,7 @@ public class PhotoService {
 		// 引数のModelよりEntityに値をコピー。
 		BeanUtils.copyProperties(photo, entity);
 		
-		System.out.println(entity);
+		log.debug(entity);
 		
 		// DBへのINSERT実行
 		PhotoEntity updatedEntity = repository.save(entity);
