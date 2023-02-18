@@ -3,7 +3,6 @@
  */
 package hashimotonet.util;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
@@ -12,6 +11,7 @@ import java.util.Properties;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.core.io.ClassPathResource;
 
 /**
  * プロパティファイルを扱うユーティリティクラスです。
@@ -72,39 +72,6 @@ public final class PropertyUtil {
 
 	/**
 	 * 引数のファイル名をクラスパスリソースから検索し
-	 * 取得したURLをStringとして返却sます。
-	 *
-	 * @param fileName クラスパス資源であるファイル
-	 * @return StringであるURL表現のファイルパス
-	 * @throws URISyntaxException URIシンタックス例外
-	 */
-	private String getURLAsString(String fileName)
-			throws URISyntaxException{
-		
-		log.debug("fileName = " + fileName);
-
-		// 当クラスからクラスローダを取得し、クラスパス資源のURLを求める
-		URL url = this.getClass().getClassLoader().getResource(fileName);
-		
-		log.debug("url = " + url.toString());
-		
-		log.debug("uri = " + url.toURI());
-
-		// URLよりURIを求め、ファイルオブジェクトを生成する
-		File file = new File(url.toURI());
-
-		// ファイルオブジェクトより絶対パスを取得する。
-		String path = file.getAbsolutePath();
-
-		// ログ出力する
-		log.info("path = " + path);
-
-		// 引数であるクラスパス資源の絶対パスを返却する
-		return path;
-	}
-	
-	/**
-	 * 引数のファイル名をクラスパスリソースから検索し
 	 * 取得したURLよりInputStreamを取得して返却します。
 	 * 
 	 * @param fileName クラスパス資源であるファイル
@@ -117,9 +84,10 @@ public final class PropertyUtil {
 		System.out.println("fileName : " + fileName);
 		
 		// 当クラスからクラスローダを取得し、クラスパス資源のURLを求める
-		URL url = this.getClass().getClassLoader().getResource(fileName);
+		//URL url = this.getClass().getClassLoader().getResource(fileName);
 		
-		in = url.openStream();
+		//in = url.openStream();
+		in = new ClassPathResource(fileName).getInputStream();
 
 		return in;
 	}

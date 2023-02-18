@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<style>
+table {
+  width: 100%;
+}
+img {
+  height: auto;
+  width: 266px;
+}
+td {
+	padding: 30px;
+}
+</style>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="css/bootstrap.css" />
+<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="js/JSON-to-Table.min.1.0.0.js"></script>
+<script type="text/javascript">
+  var data = [(${images})];
+</script>
+<script type="text/javascript">
+$(document).ready(function () {
+    var len = data.length;
+    var src = '<table align="center" width="100%" border="0">\r\n<tr><th></th><th></th><th></th><th></th></tr>\r\n';
+    for(var i=0; i < len; i++){
+    	console.log("i=" + i);
+    	console.log("(i % 4)=" + (i % 4));
+        if ( i % 4 == 0) {
+  	      src += '<tr><td><a href="' + data[i].url + 
+  	  	        '" target=\"blank_\"><div align=\"center\"><img src="' + data[i].url +
+  	  	        '" title="' + data[i].alt + '" ' +
+  	  	        '" alt="' + data[i].alt + '"></div></a>' + 
+  	            '<br/>\r\n' +
+  	            '<div align=\"center\">' + data[i].alt + '</div>\r\n' +
+  	  	        '</td>';
+        } else if ( (i % 4 == 1) || (i % 4 == 2)) {
+   	      src += '<td><a href="' + data[i].url + 
+  	        '" target=\"blank_\"><div align=\"center\"><img src="' + data[i].url + 
+	        '" title="' + data[i].alt + '" ' +
+  	        '" alt="' + data[i].alt + '"></div></a>' + 
+            '<br/>\r\n' +
+            '<div align=\"center\">' + data[i].alt + '</div>\r\n' +
+  	        '</td>\r\n';
+        } else {
+  	      src +=
+  	  	        '<td><a href="' + data[i].url + 
+  	  	        '" target=\"blank_\"><div align=\"center\"><img src="' + data[i].url + 
+  	  	        '" title="' + data[i].alt + '" ' +
+  	  	        '" alt="' + data[i].alt + '"></div></a>' + 
+  	            '<br/>\r\n' +
+  	            '<div align=\"center\">' + data[i].alt + '</div>\r\n' +
+  	  	        '</td></tr>\r\n';
+        }
+        //console.log(src);
+    }
+    src += '</table>';
+    $("#headline_contents").append(src);
+});
+</script>
+<title>Display Images</title>
+</head>
+<body>
+	<div align="right"><h3>[[${id}]]</h3></div>
+	<hr/>
+	<div id="headline_contents" class="customImage"></div>
+	<div align="center">
+		<form name="frm" method="post" action="SignIn">
+			<input type="hidden" name="id" th:value="${id}" />
+			<input type="button" class="btn btn-primary btn-sm" onClick=document.frm.submit(); value="back" />
+		</form>	
+	</div>
+</body>
+</html>

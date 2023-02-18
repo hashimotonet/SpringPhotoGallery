@@ -13,7 +13,7 @@ public abstract class AbstractBaseDao {
     /**
      * 接続プロパティを持つファイル名
      */
-    private String property = "PGatAmazonAWS.properties";
+    private String property = "application.properties";
 
     /**
      * 接続URL
@@ -53,12 +53,13 @@ public abstract class AbstractBaseDao {
         Class.forName("com.mysql.cj.jdbc.Driver");
 
         // プロパティ読み込みユーティリティを起動
+        System.getProperties().list(System.out);
         PropertyUtil util = new PropertyUtil(property);
 
         // データベース接続に必要なプロパティ読み込み
-        this.url = util.get("URL"); // URLを取得
-        this.user = util.get("USER"); // ユーザ名を取得
-        this.password = util.get("PASSWORD"); // パスワードを取得
+        this.url = util.get("spring.datasource.url");           // URLを取得
+        this.user = util.get("spring.datasource.username");     // ユーザ名を取得
+        this.password = util.get("spring.datasource.password"); // パスワードを取得
     }
 
     /**

@@ -17,6 +17,9 @@ public class SignInController {
   @PostMapping
   public String index(@RequestParam("id") String id, Model model) {
 	  model.addAttribute("id", id);
+      
       return "photo";
+    //return "display";
+    //return "redirect:/ListImages";
   }
 }
