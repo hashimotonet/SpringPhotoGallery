@@ -1,0 +1,47 @@
+#docker image pull mysql:8.0
+
+#docker volume create db
+
+#docker container run --name gallery-mysql -v db:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=gallery -d mysql:latest
+
+#docker compose up --build
+
+docker compose up --d
+
+#docker exec -it gallery-mysql bash
+
+docker ps
+
+docker exec -it <CONTAINER ID> bash
+
+mysql -p
+
+#create database gallery;
+
+CREATE USER 'gallery'@'localhost' IDENTIFIED BY 'gallery';
+
+GRANT ALL PRIVILEGES ON gallery.* TO 'gallery'@'localhost';
+
+FLUSH PRIVILEGES;
+
+SHOW GRANTS FOR 'gallery'@'localhost';
+
+\q
+
+--------------------
+
+#mysql -u gallery -p
+
+#use gallery;
+
+
+#mysql -u gallery -p gallery < export_file.sql
+
+
+--------------------
+
+docker exec -it java /bin/bash
+
+pwd
+
+
