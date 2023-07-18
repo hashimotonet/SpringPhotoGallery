@@ -8,5 +8,5 @@ RUN chmod 644 /etc/mysql/my.cnf
 # データの初期化を行うDDLをコンテナにコピー
 COPY ./init_data.sql /docker-entrypoint-initdb.d
 
-FROM openjdk:11
+FROM openjdk:15
 RUN microdnf install findutils

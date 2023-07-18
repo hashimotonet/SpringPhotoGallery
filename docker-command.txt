@@ -1,22 +1,14 @@
-#docker image pull mysql:8.0
+[ docker 起動以前(Windows上) ]
+gradlew build
 
-#docker volume create db
-
-#docker container run --name gallery-mysql -v db:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=gallery -d mysql:latest
-
-#docker compose up --build
-
+[ docker 起動以降 ]
 docker compose up --d
-
-#docker exec -it gallery-mysql bash
 
 docker ps
 
-docker exec -it <CONTAINER ID> bash
+docker exec -it <CONTAINER ID> bash #mysqldb
 
 mysql -p
-
-#create database gallery;
 
 CREATE USER 'gallery'@'localhost' IDENTIFIED BY 'gallery';
 
@@ -28,20 +20,14 @@ SHOW GRANTS FOR 'gallery'@'localhost';
 
 \q
 
---------------------
+exit
 
-#mysql -u gallery -p
+-----
 
-#use gallery;
+docker-compose exec java bash
 
+cd build/libs
 
-#mysql -u gallery -p gallery < export_file.sql
+ls -l
 
-
---------------------
-
-docker exec -it java /bin/bash
-
-pwd
-
-
+java -jar SpringPhotoGallery-0.0.1-SNAPSHOT.jar

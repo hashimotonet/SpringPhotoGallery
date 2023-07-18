@@ -18,7 +18,7 @@ services:
     image: openjdk:15
     container_name: java
     env_file:
-      - ./.env # mysqlと同じ	ものを指定
+      - ./.env # mysqlと同じものを指定
     tty: true
     working_dir: /app
     volumes:
