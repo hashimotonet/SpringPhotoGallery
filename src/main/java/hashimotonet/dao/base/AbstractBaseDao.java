@@ -90,7 +90,9 @@ public abstract class AbstractBaseDao {
             throws SQLException {
 
         // 接続をコミットします
-        this.conn.commit();
+    	if (null != this.conn) {
+    		this.conn.commit();
+    	}
 
     }
 
@@ -103,7 +105,9 @@ public abstract class AbstractBaseDao {
             throws SQLException {
 
         // 接続をロールバックします
-        this.conn.rollback();
+    	if (null != this.conn) {
+    		this.conn.rollback();
+    	}
 
     }
 
@@ -116,7 +120,9 @@ public abstract class AbstractBaseDao {
             throws SQLException {
 
         // 接続をクローズします
-        this.conn.close();
+    	if (null != this.conn) {
+    		this.conn.close();
+    	}
 
     }
 
