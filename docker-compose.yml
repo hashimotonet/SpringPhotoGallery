@@ -11,7 +11,7 @@ services:
     ports:
       - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
     volumes:
-      - db:/var/lib/mysql
+      - db:/var/lib/mysql #- ./sql:/docker-entrypoint-initdb.d 
     networks:
       - mynetwork
   java:
