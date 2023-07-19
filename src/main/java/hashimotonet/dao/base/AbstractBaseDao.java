@@ -53,7 +53,7 @@ public abstract class AbstractBaseDao {
         Class.forName("com.mysql.cj.jdbc.Driver");
 
         // プロパティ読み込みユーティリティを起動
-        System.getProperties().list(System.out);
+        //System.getProperties().list(System.out);
         PropertyUtil util = new PropertyUtil(property);
 
         // データベース接続に必要なプロパティ読み込み

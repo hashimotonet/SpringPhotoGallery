@@ -42,18 +42,29 @@ public class SignInController {
 	 
 		SignInAction action = new SignInAction();
 		boolean success = false;
-		try {
-			
-			success = action.execute(request, id, password);
-			
-		} catch(ClassNotFoundException | IOException | SQLException | URISyntaxException e) {
-			
-			log.catching(e);
-			
+		
+		model.addAttribute("id", id);
+		model.addAttribute("password", password);
+	    
+		String referer = request.getHeader("REFERER");
+		
+		if (referer.endsWith("ListImages")) {
+			success = true;
+		}
+		
+		if (false == success) {
+
+			try {
+				
+				success = action.execute(request, id, password);
+				
+			} catch(ClassNotFoundException | IOException | SQLException | URISyntaxException e) {
+				
+				log.catching(e);
+				
+			}
 		}
 	
-		model.addAttribute("id", id);
-	    
 		if (success) {
 			
 			response.setStatus(HttpServletResponse.SC_OK);

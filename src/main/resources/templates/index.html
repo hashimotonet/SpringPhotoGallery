@@ -11,6 +11,8 @@ let authenticated = "${auth}";
 
 window.onload = (event)=>{
 	if (authenticated == "unauthorized") {
+		document.getElementById("auth-error").style.display = "block";
+	} else {
 		document.getElementById("auth-error").style.display = "none";
 	}
 };
