@@ -2,7 +2,11 @@ version: "3.8"
 services:
   mysqldb:
     image: mysql:8.0
-    restart: unless-stopped
+    build:
+      context: .               # Dockerfileへのパス指定
+      dockerfile: Dockerfile   # Dockerfileへのパス指定
+    container_name: mysql
+    restart: always
     env_file: ./.env
     environment:
       - MYSQL_DATABASE=$MYSQLDB_DATABASE
@@ -11,7 +15,8 @@ services:
     ports:
       - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
     volumes:
-      - db:/var/lib/mysql #- ./sql:/docker-entrypoint-initdb.d 
+      - db:/var/lib/mysql 
+      - ./sql:/docker-entrypoint-initdb.d 
     networks:
       - mynetwork
   java:
