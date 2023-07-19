@@ -2,11 +2,11 @@
 gradlew build
 
 [ docker 起動以降 ]
-docker compose up --d
+docker compose up -d
 
 docker ps
 
-docker exec -it <CONTAINER ID> bash #mysqldb
+docker exec -it mysql bash #mysqldb
 
 mysql -p
 

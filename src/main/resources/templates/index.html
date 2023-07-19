@@ -10,7 +10,7 @@
 let authenticated = "${auth}";
 
 window.onload = (event)=>{
-	if (authenticated == "${auth}") {
+	if (authenticated == "unauthorized") {
 		document.getElementById("auth-error").style.display = "none";
 	}
 };
