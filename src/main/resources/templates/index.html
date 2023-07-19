@@ -6,6 +6,23 @@
     <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" />
 <script type="text/javascript">
+
+let authenticated = "${auth}";
+
+window.onload = (event)=>{
+	if (authenticated == "${auth}") {
+		document.getElementById("auth-error").style.display = "none";
+	}
+};
+
+function doSignIn() {
+    frm.action = "./SignIn";
+    frm.method = "post";
+    frm.submit();
+
+    return;
+}
+
 function doSignOut() {
     frm.action = "./SignOut";
     frm.method = "post";
@@ -16,11 +33,44 @@ function doSignOut() {
 </script>
 </head>
 <body>
-<form name="frm" action="./SignIn" method="POST">
-    <input type="text" id="id" name="id" /><br/><br/>
-    <input type="password" id="password" name="password" /><br/><br/>
-    <input type="submit" value="Sign In" class="btn btn-primary btn-sm" /><br/><br/>
-    <input type="button" value= "Sign Out" class="btn btn-primary btn-sm"  onClick="javascript:doSignOut();" />
-</form>
+	<table width=100% height=100% border=0>
+		<tr>
+			<td align="center">
+				<div>
+					<h1>PhotoGallery</h1>
+					<h5>Please sign in or register.</h5>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<hr />
+			</td>
+		</tr>
+		<tr>
+			<td align="center">
+				<div id="auth-error" style="margin-left: auto; margin-right: auto; ">認証に失敗しました。</div><br />
+			</td>
+		</tr>
+		<tr>
+			<td align="center">
+					<form name="frm" action="./SignIn" method="POST">
+						<input type="text" id="id" name="id" /><br /> <br /> 
+						<input type="password" id="password" name="password" />
+					</form>
+			</td>
+		</tr>
+		<tr>
+			<td><p/></td>
+		</tr>
+		<tr>
+			<td align="center" valign="bottom">
+				<button id="sign-in" type="button" class="btn btn-primary btn-sm" onClick="javascript:doSignIn();" >Sign In</button><br /> <br /> 
+				<input
+					type="button" value="Sign Out" class="btn btn-primary btn-sm"
+					onClick="javascript:doSignOut();" />
+			</td>
+		</tr>
+	</table>
 </body>
 </html>

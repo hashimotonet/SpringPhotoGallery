@@ -4,9 +4,8 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 import hashimotonet.dao.AccountDao;
 import hashimotonet.util.BaseUtil;
@@ -18,17 +17,18 @@ import hashimotonet.util.BaseUtil;
  */
 public class SignInAction {
 	
-	@Autowired
-	HttpSession session;
-
 	public SignInAction() {
 
 	}
 	
-	public boolean execute(String id, String password) throws ClassNotFoundException, SQLException, IOException, URISyntaxException {
+	public boolean execute(HttpServletRequest request, String id, String password) throws ClassNotFoundException, 
+																							 SQLException, 
+																							 IOException, 
+																							 URISyntaxException {
 		
 		boolean result = false;
 		int authority = 0;
+		HttpSession session = request.getSession(true);
 		
         // 新規セッション／継続セッションのいずれかを判定
         if (session.isNew() == true) {
@@ -137,5 +137,4 @@ public class SignInAction {
 
         return result;
     }
-
 }

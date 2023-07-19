@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.logging.log4j.LogManager;
@@ -29,6 +30,10 @@ public class SignInController {
 	
     Logger log = (Logger) LogManager.getLogger(ListImagesAction.class);
     
+	@Autowired
+	HttpServletRequest request;
+
+    
     @Autowired
     HttpServletResponse response;
     
@@ -39,7 +44,7 @@ public class SignInController {
 		boolean success = false;
 		try {
 			
-			success = action.execute(id, password);
+			success = action.execute(request, id, password);
 			
 		} catch(ClassNotFoundException | IOException | SQLException | URISyntaxException e) {
 			
