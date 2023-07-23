@@ -6,21 +6,25 @@ docker compose up -d
 
 docker ps
 
-docker exec -it mysql bash #mysqldb
+#
+# javaの作りを見直したので、mysqlに関して以下は行わなくともよい設定に
+# なっている。
+#
+#docker exec -it mysql bash #mysqldb
 
-mysql -p
+#mysql -p
 
-CREATE USER 'gallery'@'localhost' IDENTIFIED BY 'gallery';
+#CREATE USER 'gallery'@'localhost' IDENTIFIED BY 'gallery';
 
-GRANT ALL PRIVILEGES ON gallery.* TO 'gallery'@'localhost';
+#GRANT ALL PRIVILEGES ON gallery.* TO 'gallery'@'localhost';
 
-FLUSH PRIVILEGES;
+#FLUSH PRIVILEGES;
 
-SHOW GRANTS FOR 'gallery'@'localhost';
+#SHOW GRANTS FOR 'gallery'@'localhost';
 
-\q
+#\q
 
-exit
+#exit
 
 -----
 
