@@ -6,21 +6,26 @@ docker compose up -d
 
 docker ps
 
-docker exec -it mysql bash #mysqldb
+#
+# javaの作りを見直したので、mysqlに関して以下は行わなくともよい設定に
+# なっている。
+#
+#docker exec -it mysql bash #mysqldb
 
-mysql -p
+#mysql -p
 
-CREATE USER 'gallery'@'localhost' IDENTIFIED BY 'gallery';
+#CREATE USER 'gallery'@'localhost' IDENTIFIED BY 'gallery';
 
-GRANT ALL PRIVILEGES ON gallery.* TO 'gallery'@'localhost';
+#GRANT ALL PRIVILEGES ON gallery.* TO 'gallery'@'localhost';
 
-FLUSH PRIVILEGES;
+#FLUSH PRIVILEGES;
 
-SHOW GRANTS FOR 'gallery'@'localhost';
+#SHOW GRANTS FOR 'gallery'@'localhost';
 
-\q
+#\q
 
-exit
+#exit
+
 
 -----
 
@@ -31,3 +36,32 @@ cd build/libs
 ls -l
 
 java -jar SpringPhotoGallery-0.0.1-SNAPSHOT.jar
+
+
+-----
+###############################################################################
+# 
+# うまくいかない時には
+#
+# 一旦、ここまでにインストールを行った成果物の削除を行う。
+#
+# 【注意！】これ以降の操作は、PhotoGalleryAppだけに限らず、Docker上のすべての
+#           コンテナ、ボリューム、イメージを削除します。
+#
+#  上記に充分留意したうえで行ってください。
+#
+# 
+# 停止コンテナ一括削除
+# docker container prune
+#
+# 未使用のVolumeを一括削除
+# docker volume prune
+#
+# 未使用のイメージを一括削除
+# docker image prune
+#
+# 未使用のネットワークを一括削除
+# docker network prune
+#
+# 未使用なコンテナ, イメージ, ネットワークを一括削除
+# docker system prune
