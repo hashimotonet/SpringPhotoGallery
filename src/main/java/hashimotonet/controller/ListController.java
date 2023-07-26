@@ -47,8 +47,9 @@ public class ListController {
 	}
 
 	@PostMapping
-	public String index(@RequestParam("id") String id, Model model) {
+	public String index(@RequestParam("id") String id,@RequestParam("password") String password, Model model) {
 		model.addAttribute("id", id);
+		model.addAttribute("password", password);
 		try {
 			String images = service.execute(request, id);
 			model.addAttribute("images", images);

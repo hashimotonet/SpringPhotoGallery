@@ -39,6 +39,8 @@ public class StartupImagesLoader {
 
         this.context = context;
 
+        System.getProperties().list(System.out);
+        
         try {
 
             dao = new PhotoDao();
