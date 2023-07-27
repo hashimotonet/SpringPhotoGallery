@@ -26,6 +26,7 @@ docker ps
 
 #exit
 
+
 -----
 
 docker-compose exec java bash
@@ -35,3 +36,36 @@ cd build/libs
 ls -l
 
 java -jar SpringPhotoGallery-0.0.1-SNAPSHOT.jar
+
+
+-----
+###############################################################################
+# 
+# うまくいかない時には
+#
+# 一旦、ここまでにインストールを行った成果物の削除を行う。
+#
+# 【注意！】これ以降の操作は、PhotoGalleryAppだけに限らず、Docker上のすべての
+#           コンテナ、ボリューム、イメージを削除します。
+#
+#  上記に充分留意したうえで行ってください。
+#
+# 
+# 停止コンテナ一括削除
+# docker container prune
+#
+# 未使用のVolumeを一括削除
+# docker volume prune
+#
+# 未使用のイメージを一括削除
+# docker image prune
+#
+# 未使用のネットワークを一括削除
+# docker network prune
+#
+# 未使用なコンテナ, イメージ, ネットワークを一括削除
+# docker system prune
+#
+# 【関連するイメージのみを削除する場合】
+# docker images
+# docker rmi <IMAGE ID>
