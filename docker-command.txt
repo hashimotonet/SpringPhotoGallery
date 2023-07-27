@@ -66,6 +66,7 @@ java -jar SpringPhotoGallery-0.0.1-SNAPSHOT.jar
 # 未使用なコンテナ, イメージ, ネットワークを一括削除
 # docker system prune
 #
+#
 # 【関連するイメージのみを削除する場合】
 # docker images
 # docker rmi <IMAGE ID>

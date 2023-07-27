@@ -7,14 +7,13 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" />
 <script type="text/javascript">
 
-let authenticated = "${auth}";
+var authenticated = "[[${auth}]]";
 
 window.onload = (event)=>{
 	if (authenticated == "unauthorized") {
 		document.getElementById("auth-error").style.display = "block";
-	} else {
-		document.getElementById("auth-error").style.display = "none";
 	}
+	return false;
 };
 
 function doSignIn() {
@@ -51,7 +50,7 @@ function doSignOut() {
 		</tr>
 		<tr>
 			<td align="center">
-				<div id="auth-error" style="margin-left: auto; margin-right: auto; ">認証に失敗しました。</div><br />
+				<div id="auth-error" style="margin-left: auto; margin-right: auto; display: none;">認証に失敗しました。</div><br />
 			</td>
 		</tr>
 		<tr>
