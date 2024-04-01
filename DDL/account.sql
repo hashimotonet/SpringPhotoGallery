@@ -1,5 +1,6 @@
 CREATE TABLE `account` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` text,
   `identity` varchar(80) NOT NULL UNIQUE,
   `password` text,
   `authority` int(11) NOT NULL DEFAULT '0',
