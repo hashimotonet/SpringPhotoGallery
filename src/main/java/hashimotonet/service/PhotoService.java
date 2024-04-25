@@ -23,7 +23,7 @@ public class PhotoService {
 	/**
 	 * Logger.
 	 */
-    private Logger log = LogManager.getLogger(UploadService.class);
+    private Logger log = LogManager.getLogger(PhotoRepository.class);
 
 	public PhotoService() {
 		this.repository = null;

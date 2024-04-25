@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" />
+<script type="text/javascript">
+
+var authenticated = "[[${auth}]]";
+
+window.onload = (event)=>{
+	if (authenticated == "unauthorized") {
+		document.getElementById("auth-error").style.display = "block";
+	}
+	return false;
+};
+
+function doSignIn() {
+    //frm.action = "./SignIn";
+    //frm.method = "post";
+    frm.submit();
+	debugger;
+    return;
+}
+
+function doSignOut() {
+    frm.action = "./SignOut";
+    frm.method = "post";
+    frm.submit();
+
+    return;
+}
+</script>
+</head>
+<body>
+	<table width=100% height=100% border=0>
+		<tr>
+			<td align="center">
+				<div>
+					<h1>PhotoGallery</h1>
+					<h5>Please Sign In.</h5>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<hr />
+			</td>
+		</tr>
+		<tr>
+			<td align="center">
+				<div id="auth-error" style="margin-left: auto; margin-right: auto; display: none;">認証に失敗しました。</div><br />
+			</td>
+		</tr>
+		<tr>
+			<td align="center">
+					<!-- <form name="frm" action="./SignIn" method="POST"> -->
+					<form name="frm" th:action="@{SignIn}" method="POST">
+						<!-- <input type="text" id="id" name="id" th:value="*{userName}" required="required" /><br /> <br /> --> 
+						<input type="text" id="id" name="userName" th:value="*{userName}" required="required" /><br /> <br /> 
+						<input type="password" id="password" name="password" th:value="*{password}" required="required" />
+						<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"	/>
+					</form>
+			</td>
+		</tr>
+		<tr>
+			<td><p/></td>
+		</tr>
+		<tr>
+			<td align="center" valign="bottom">
+				<button id="sign-in" type="button" class="btn btn-primary btn-sm" onClick="javascript:doSignIn();" >Sign In</button><br /> <br /> 
+				<input
+					type="button" value="Sign Out" class="btn btn-primary btn-sm"
+					onClick="javascript:doSignOut();" />
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

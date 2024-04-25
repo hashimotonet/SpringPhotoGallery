@@ -1,7 +1,7 @@
 /**
  * 
  */
-package hashimotonet;
+package hashimotonet.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -27,6 +27,9 @@ public class UploadController {
 
 	@Autowired
 	private HttpServletRequest request;
+	
+//	@Autowired
+//	MailSenderService mailService;
 
 	/**
 	 * 画像データ操作サービス
@@ -61,6 +64,7 @@ public class UploadController {
 		log.debug("reqBean : \r\n" + reqBean);
 		try {
 			service.execute(request, reqBean);
+			//mailService.sendMail();
 		} catch (Exception e) {
 			log.catching(e);
 		}

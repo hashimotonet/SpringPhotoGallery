@@ -100,13 +100,12 @@ public class ListImagesService {
         
         log.debug("req = : " + req);
 
-        /*
         if (req.contains(name)) {
             id = req.substring("id=".length(), req.indexOf(name));
             status = req.substring(req.indexOf(name) + name.length());
         } else {
             //id = request.getParameter("id");
-        }*/
+        }
 
         log.debug("req = " + req);
 
