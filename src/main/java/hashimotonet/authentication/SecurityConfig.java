@@ -18,19 +18,19 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableMethodSecurity
 public class SecurityConfig {
 
-    @SuppressWarnings("deprecation")
-	@Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    @Bean
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.formLogin(login -> login
-                .loginPage("/")
+                .loginPage("/?param=signin")
                 .loginProcessingUrl("/SignIn")
-                .usernameParameter("userName")
-                .passwordParameter("password")
+//                .usernameParameter("id")
+//                .passwordParameter("password")
                 .defaultSuccessUrl("/SignIn")
-                .failureUrl("/SignIn?error")
+                .failureUrl("/error")
                 .permitAll()
-        ).logout(logout -> logout
-                .logoutSuccessUrl("/")
+//        ).logout(logout -> logout
+//        		.logoutUrl("/")
+//                .logoutSuccessUrl("/")
         ).authorizeHttpRequests(authz -> authz
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 .requestMatchers("/").permitAll()
@@ -59,7 +59,7 @@ public class SecurityConfig {
 //
 //        return preAuthenticatedProcessingFilter;
 //    }
-
+//
 //    @Bean
 //    public PreAuthenticatedAuthenticationProvider preAuthenticatedAuthenticationProvider() {
 //

@@ -6,29 +6,34 @@ import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.web.firewall.RequestRejectedHandler;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
-import hashimotonet.action.ListImagesAction;
 import hashimotonet.action.SignInAction;
+import hashimotonet.handler.CustomHttpStatusRequestRejectedHandler;
+import hashimotonet.model.Account;
 
 /**
  * @author hashi
  *
  */
 @Controller
-@RequestMapping(path="SignIn", method = RequestMethod.POST)
+@SessionAttributes(types = Account.class)
+@RequestMapping("/")
+//@RequestMapping(path="/", method = RequestMethod.POST)
 public class SignInController {
 	
-    Logger log = (Logger) LogManager.getLogger(ListImagesAction.class);
+    Logger log = (Logger) LogManager.getLogger(SignInController.class);
     
 	@Autowired
 	HttpServletRequest request;
@@ -36,6 +41,10 @@ public class SignInController {
     
     @Autowired
     HttpServletResponse response;
+    
+    public SignInController() {
+    	super();
+    }
     
 /*	@PostMapping
 	public String index(@RequestParam("userName") String id, @RequestParam("password") String password, Model model) {
@@ -83,17 +92,26 @@ public class SignInController {
 	  }
 */
 
-
-	@GetMapping
-	public String index(Authentication loginUser, Model model) {
+    @ModelAttribute("account")
+    public Account account() {
+    	return new Account();
+    }
+    
+	@PostMapping("/SignIn")
+	public String index(@ModelAttribute Account account, HttpSession session) {
+//		public String index(Authentication loginUser, Model model) {
 	 
 		SignInAction action = new SignInAction();
 		boolean success = false;
+		String name = request.getParameter("userName");
+		String password = request.getParameter("password");
 		
 		//model.addAttribute("id", loginUser.getName());
 		//model.addAttribute("password", loginUser.getPrincipal().get);
-		model.addAttribute("id", "hashimoto");
-		model.addAttribute("password", "osamu");
+		account.setId(name);
+		account.setPassword(password);
+		
+		session.setAttribute("account", account);
 	    
 		String referer = request.getHeader("REFERER");
 		
@@ -107,7 +125,7 @@ public class SignInController {
 
 			try {
 				
-				success = action.execute(request, "hashimoto", "osamu");
+				success = action.execute(request, name, password);
 				
 			} catch(ClassNotFoundException | IOException | SQLException | URISyntaxException e) {
 				
@@ -124,7 +142,7 @@ public class SignInController {
 			
 		} else {
 
-			model.addAttribute("auth", "unauthorized");
+			//model.addAttribute("auth", "unauthorized");
 			
 			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 
@@ -132,4 +150,11 @@ public class SignInController {
 		}
 	      
 	  }
+      
+	  @Bean
+	  public RequestRejectedHandler requestRejectedHandler() {
+          return new CustomHttpStatusRequestRejectedHandler();
+      }
+	
+	
 }

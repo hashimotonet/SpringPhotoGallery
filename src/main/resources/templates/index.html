@@ -60,7 +60,6 @@ function doSignOut() {
 					<form name="frm" action="./SignIn" method="POST">
 						<input type="text" id="id" name="id" /><br /> <br /> 
 						<input type="password" id="password" name="password" />
-						<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"	/>
 					</form>
 			</td>
 		</tr>

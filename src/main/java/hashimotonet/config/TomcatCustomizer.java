@@ -28,7 +28,7 @@ public class TomcatCustomizer implements WebServerFactoryCustomizer<TomcatServle
 
             protocol.setMaxKeepAliveRequests(10);
 
-            protocol.setSessionCacheSize(1024 * 1024 * 1024);
+            //protocol.setSessionCacheSize(1024 * 1024 * 1024);
 
             
             log.info("####################################################################################");
@@ -40,7 +40,7 @@ public class TomcatCustomizer implements WebServerFactoryCustomizer<TomcatServle
             log.info("# keepalive timeout: {} ms", protocol.getKeepAliveTimeout());
             log.info("# connection timeout: {} ms", protocol.getConnectionTimeout());
             log.info("# max connections: {}", protocol.getMaxConnections());
-            log.info("# session cache size: {}", protocol.getSessionCacheSize());
+            //log.info("# session cache size: {}", protocol.getSessionCacheSize());
             log.info("#");
             log.info(
                 "####################################################################################");
