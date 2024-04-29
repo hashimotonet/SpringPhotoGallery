@@ -43,6 +43,7 @@ public class IndexController {
 					page = "SignIn";
 					break;
 				default:
+					page = "display";
 					break;
 			}
 		}

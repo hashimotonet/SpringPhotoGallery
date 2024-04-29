@@ -29,10 +29,10 @@
 	    <p>
 
     <form id="frm" name="frm">
-      <!--
-        <input type="hidden" id="id" name="id" th:value="${id}" />
-        <input type="hidden" id="password" name="password" th:value="${password}" />
-      -->
+		<!-- <input type="hidden" th:if="${session.account != null}" th:field="*{account}" />		-->
+        <input type="hidden" id="id" name="id" th:field="${account.id}" />
+        <!-- <input type="hidden" id="password" name="password" th:field="${account.password}" /> -->
+		
 		  <button type="button" id="btn-send" class="btn btn-primary btn-sm">サーバへ保存</button>
         
         <button type="button" id="btn-disp" class="btn btn-primary btn-sm">一覧画面表示</button>
@@ -40,6 +40,7 @@
       </div>
 
 </body>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script type="text/javascript">
 
     // getUserMedia が使えないときは、『getUserMedia()が利用できないブラウザです！』と言ってね。
@@ -83,49 +84,50 @@
 //---------------------------------------------
 //[event] ページ読み込み完了
 //---------------------------------------------
-window.onload = ()=>{
+//window.onload = ()=>{
 
     //---------------------------------------------
     // 保存ボタンが押されたらサーバへ送信する
     //---------------------------------------------
-    document.querySelector("#btn-send").addEventListener("click", ()=>{
+	 function onSendClick() {
+	     // Canvasなどのデータを取得
+	     const canvas = document.getElementById("capture_image").toDataURL("image/png");  // DataURI Schemaが返却される
+	     const id =document.getElementById("id").value;
+	     var    alt=document.getElementById("alt_text").value;
+	     
+	     if( !checkLettersPermitted(alt) ) {
+	   	  alert("Please write a comment in English.\r\n入力は半角英数で行ってください。");
+	   	  document.getElementById("alt_text").forcus();
+	   	  return;
+	     }
+	
+	     const json = {
+	   		  "identity":id,
+	   		  "alt":alt,
+	   		  "data":canvas
+	     };
+	     
+	     //alert(eval(json));
+	
+	     // 送信情報の設定
+	     const param  = {
+	       method: "POST",
+	       headers: {
+	         "Content-Type": "application/json; charset=utf-8"
+	       },
+	       //body: JSON.stringify({data: canvas})
+	       body: JSON.stringify(json)
+	     };
+	
+	     // サーバへ送信
+	     sendServer(SAVE_URL, param);
+	 }
 
-      //alert("サーバー送信処理");
-
-      //alert(eval(document.getElementById("capture_image")));
-
-      // Canvasなどのデータを取得
-      const canvas = document.getElementById("capture_image").toDataURL("image/png");  // DataURI Schemaが返却される
-      const id =document.getElementById("id").value;
-      var    alt=document.getElementById("alt_text").value;
-      
-      if( !checkLettersPermitted(alt) ) {
-    	  alert("Please write a comment in English.\r\n入力は半角英数で行ってください。");
-    	  document.getElementById("alt_text").forcus();
-    	  return;
-      }
-
-      const json = {
-    		  "identity":id,
-    		  "alt":alt,
-    		  "data":canvas
-      };
-      
-      //alert(eval(json));
-
-      // 送信情報の設定
-      const param  = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json; charset=utf-8"
-        },
-        //body: JSON.stringify({data: canvas})
-        body: JSON.stringify(json)
-      };
-
-      // サーバへ送信
-      sendServer(SAVE_URL, param);
-    });
+	 const send = document.getElementById("btn-send");
+	send.addEventListener("click", onSendClick);
+/*    document.querySelector("#btn-send").addEventListener("click", function(event) {
+		onSendClick();
+	}); */
 
    document.querySelector("#btn-disp").addEventListener("click", ()=>{
 	   document.frm.action="ListImages";
@@ -133,7 +135,7 @@ window.onload = ()=>{
 	   document.frm.submit();
    });
 
-};
+//};
 
 
   /**
@@ -175,6 +177,7 @@ window.onload = ()=>{
         console.log(`[error2] ${error}`);
       });
   }
+
 </script>
 
 </html>

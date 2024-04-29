@@ -17,8 +17,8 @@ td {
 <link rel="stylesheet" href="css/bootstrap.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
-<script type="text/javascript">
-  //var data = [(${images})];
+<script th:inline="javascript">
+    var data = /*[[${images}]]*/ '';
 </script>
 <script src="js/controller.js"></script>
 <title>Display Images</title>
@@ -37,7 +37,7 @@ td {
 	        </tr>
 	        
 	        <!--  Angular.jsによる繰り返し表示  -->
-	        <tr ng-repeat="photo in json">
+	        <tr ng-repeat="photo in json track by $index">
 	            <td align="center">
 	              <a href="{{photo.url}}" target="_blank">
 	                <img alt="{{photo.alt}}" title="{{photo.alt}}" src="{{photo.url}}">

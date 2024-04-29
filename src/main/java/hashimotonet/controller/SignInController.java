@@ -28,7 +28,7 @@ import hashimotonet.model.Account;
  *
  */
 @Controller
-@SessionAttributes(types = Account.class)
+@SessionAttributes(types = {Account.class}, names= {"account"})
 @RequestMapping("/")
 //@RequestMapping(path="/", method = RequestMethod.POST)
 public class SignInController {
@@ -46,52 +46,6 @@ public class SignInController {
     	super();
     }
     
-/*	@PostMapping
-	public String index(@RequestParam("userName") String id, @RequestParam("password") String password, Model model) {
-	 
-		SignInAction action = new SignInAction();
-		boolean success = false;
-		
-		model.addAttribute("id", id);
-		model.addAttribute("password", password);
-	    
-		String referer = request.getHeader("REFERER");
-		
-		if (referer.endsWith("ListImages")) {
-			success = true;
-		}
-		
-		if (false == success) {
-
-			try {
-				
-				success = action.execute(request, id, password);
-				
-			} catch(ClassNotFoundException | IOException | SQLException | URISyntaxException e) {
-				
-				log.catching(e);
-				
-			}
-		}
-	
-		if (success) {
-			
-			response.setStatus(HttpServletResponse.SC_OK);
-
-			return "photo";
-			
-		} else {
-
-			model.addAttribute("auth", "unauthorized");
-			
-			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-
-			return "index";
-		}
-	      
-	  }
-*/
-
     @ModelAttribute("account")
     public Account account() {
     	return new Account();
@@ -157,4 +111,50 @@ public class SignInController {
       }
 	
 	
+	  /*	@PostMapping
+		public String index(@RequestParam("userName") String id, @RequestParam("password") String password, Model model) {
+		 
+			SignInAction action = new SignInAction();
+			boolean success = false;
+			
+			model.addAttribute("id", id);
+			model.addAttribute("password", password);
+		    
+			String referer = request.getHeader("REFERER");
+			
+			if (referer.endsWith("ListImages")) {
+				success = true;
+			}
+			
+			if (false == success) {
+
+				try {
+					
+					success = action.execute(request, id, password);
+					
+				} catch(ClassNotFoundException | IOException | SQLException | URISyntaxException e) {
+					
+					log.catching(e);
+					
+				}
+			}
+		
+			if (success) {
+				
+				response.setStatus(HttpServletResponse.SC_OK);
+
+				return "photo";
+				
+			} else {
+
+				model.addAttribute("auth", "unauthorized");
+				
+				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+
+				return "index";
+			}
+		      
+		  }
+	*/
+
 }

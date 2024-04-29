@@ -2,8 +2,9 @@ package hashimotonet.bean;
 
 import java.io.Serializable;
 
-import lombok.Getter;
-import lombok.Setter;
+import org.springframework.stereotype.Component;
+
+import lombok.Data;
 import lombok.ToString;
 
 /**
@@ -12,12 +13,12 @@ import lombok.ToString;
  * @author Osamu Hashimoto
  *
  */
-@Setter
-@Getter
+@Data
+@Component
 @ToString
 public class RequestBean implements Serializable {
 
-	//private int id;
+	private String id;
 	
 	/**
 	 * ユーザID

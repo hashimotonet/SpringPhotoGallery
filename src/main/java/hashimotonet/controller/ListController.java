@@ -12,15 +12,18 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import hashimotonet.service.ListImagesService;
 
 @Controller
 @RequestMapping(path="/ListImages", method = RequestMethod.GET)
+@SessionAttributes(value="images")
 public class ListController {
 	
 	@Autowired
@@ -41,17 +44,24 @@ public class ListController {
      * 
      * @param service
      */
-    @Autowired
 	public ListController(ListImagesService service) {
 		this.service = service;
 	}
 
+	@ModelAttribute(value="images")
+	public String setUpImages() {
+		return new String();
+	}
+	
+
 	@PostMapping
-	public String index(@RequestParam("id") String id,@RequestParam("password") String password, Model model) {
+	public String index(@RequestParam("id") String id, @ModelAttribute("images") String images, Model model) {
+//		public String index(@RequestParam("id") String id,@RequestParam("password") String password, Model model) {
 		model.addAttribute("id", id);
-		model.addAttribute("password", password);
+		//model.addAttribute("password", password);
+		// String images = "";
 		try {
-			String images = service.execute(request, id);
+			images = service.execute(request, id);
 			model.addAttribute("images", images);
 		} catch (ClassNotFoundException | SQLException | IOException | URISyntaxException | ServletException e) {
 			log.catching(e);

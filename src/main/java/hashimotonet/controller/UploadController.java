@@ -9,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,7 +60,12 @@ public class UploadController {
 		this.service = new UploadService();
 	}
 
-	@PostMapping
+    @ModelAttribute("account")
+    public RequestBean account() {
+    	return new RequestBean();
+    }
+    
+    @PostMapping
 	public String index(@RequestBody RequestBean reqBean) {
 		log.debug("reqBean : \r\n" + reqBean);
 		try {

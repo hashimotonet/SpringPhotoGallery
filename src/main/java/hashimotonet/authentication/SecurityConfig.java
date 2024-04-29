@@ -22,15 +22,15 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.formLogin(login -> login
                 .loginPage("/?param=signin")
-                .loginProcessingUrl("/SignIn")
+                //.loginProcessingUrl("/SignIn")
 //                .usernameParameter("id")
 //                .passwordParameter("password")
                 .defaultSuccessUrl("/SignIn")
                 .failureUrl("/error")
                 .permitAll()
-//        ).logout(logout -> logout
-//        		.logoutUrl("/")
-//                .logoutSuccessUrl("/")
+        ).logout(logout -> logout
+        		.logoutUrl("/SignOut")
+                .logoutSuccessUrl("/")
         ).authorizeHttpRequests(authz -> authz
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 .requestMatchers("/").permitAll()
