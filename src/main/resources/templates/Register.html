@@ -20,9 +20,11 @@ window.onload = (event)=>{
 function doRegister() {
 	debugger;
 	if (checkInput4Validation()) {
-		frm.action = "./SignIn";
+		frm.action = "SignUp";
 		frm.method = "post";
+		frm.param.value = "SignUp";
 		frm.submit();
+		return true;
 	}
 	return false;
 }
@@ -93,7 +95,7 @@ function doSignOut() {
 		</tr>
 		<tr>
 			<td align="center">
-				<form name="frm" action="./SignIn" method="POST">
+				<form name="frm" action="./SignUp" method="POST">
 					<table border="0" class="caption">
 						<tr>
 							<td>
@@ -137,6 +139,7 @@ function doSignOut() {
 						</tr>
 					</table>
 					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"	/>
+					<input type="hidden" name="param" value="SignUp" />
 					</form>
 			</td>
 		</tr>

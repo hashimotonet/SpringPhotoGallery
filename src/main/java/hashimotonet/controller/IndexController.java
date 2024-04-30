@@ -11,14 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @author hashi
  *
  */
 @Controller
-@RequestMapping("/")
 public class IndexController {
 	
 	Logger log = LogManager.getLogger(IndexController.class);
@@ -26,7 +24,7 @@ public class IndexController {
 	@Autowired
 	HttpServletRequest request;
 	
-    @GetMapping
+	@GetMapping("/")
     public String index(Model model) {
     	String referer = request.getHeader("REFERER");
     	String param = request.getParameter("param");
@@ -39,9 +37,12 @@ public class IndexController {
 				case "register":
 					page = "Register";
 					break;
+				case "SignUp":
+					page = "SignUp";
+					break;
 				case "signin":
 					page = "SignIn";
-					break;
+					break;	
 				default:
 					page = "display";
 					break;
