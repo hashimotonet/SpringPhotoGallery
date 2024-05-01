@@ -53,15 +53,15 @@ public class SignInController {
     
 	@PostMapping("/SignIn")
 	public String index(@ModelAttribute Account account, HttpSession session) {
-//		public String index(Authentication loginUser, Model model) {
+		Integer counter = account.getLoginCount();
+		account.setLoginCount(counter++);
+		account.setUserId(session.getId());
 	 
 		SignInAction action = new SignInAction();
 		boolean success = false;
 		String name = request.getParameter("userName");
 		String password = request.getParameter("password");
 		
-		//model.addAttribute("id", loginUser.getName());
-		//model.addAttribute("password", loginUser.getPrincipal().get);
 		account.setId(name);
 		account.setPassword(password);
 		
@@ -95,8 +95,10 @@ public class SignInController {
 			return "photo";
 			
 		} else {
+			
+			account.setAuth("unauthorized");
 
-			//model.addAttribute("auth", "unauthorized");
+			session.setAttribute("account", account);
 			
 			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 

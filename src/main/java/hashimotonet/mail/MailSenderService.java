@@ -19,17 +19,37 @@ public class MailSenderService {
 	 */
 	// TODO 送信自体はできているので、後に setText などの文言は拡張することにしておく。
     public void sendMail() {
-            var mailInfo = new SimpleMailMessage();
-            mailInfo.setSubject("javaの実装練習です");
-            mailInfo.setText("お元気ですかテストです");
-            mailInfo.setTo("hashimoto.osamu@gmail.com");
-            // mailInfo.setFrom("akimbo.himawari0311@gmail.com");
+        var mailInfo = new SimpleMailMessage();
+        mailInfo.setSubject("Javaの実装練習です");
+        mailInfo.setText("お元気ですかテストです");
+        mailInfo.setTo("develop.photogallery@gmail.com");
+        mailInfo.setFrom("akimbo.himawari0311@gmail.com");
 
-            mailSender.send(mailInfo);
+        mailSender.send(mailInfo);
 
     }
-    
+
+    public void sendMail(String url, String toAddress) {
+        var mailInfo = new SimpleMailMessage();
+        mailInfo.setSubject("Javaの実装練習です");
+        mailInfo.setText("お元気ですかテストです");
+        mailInfo.setTo("develop.photogallery@gmail.com");
+        // mailInfo.setFrom("akimbo.himawari0311@gmail.com");
+
+        mailSender.send(mailInfo);
+    }
+
 	public MailSenderService(MailSender mailsender) {
 		this.mailSender = mailsender;
+	}
+	
+	/**
+	 * 
+	 * 
+	 * @param url PhotoGalleryサービス登録URL
+	 * @return
+	 */
+	private String createMailBody(String url) {
+		return null;
 	}
 }

@@ -35,9 +35,13 @@
 		
 		  <button type="button" id="btn-send" class="btn btn-primary btn-sm">サーバへ保存</button>
         
-        <button type="button" id="btn-disp" class="btn btn-primary btn-sm">一覧画面表示</button>
+        <button type="button" id="btn-disp" class="btn btn-primary btn-sm">一覧画面表示</button><br>
+
+	    <p>
+
+		<button type="button" id="btn-logout" class="btn btn-primary btn-sm">ログアウト</button>
     </form>
-      </div>
+    </div>
 
 </body>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -129,12 +133,18 @@
 		onSendClick();
 	}); */
 
-   document.querySelector("#btn-disp").addEventListener("click", ()=>{
+	document.querySelector("#btn-disp").addEventListener("click", ()=>{
 	   document.frm.action="ListImages";
 	   document.frm.method="post";
 	   document.frm.submit();
-   });
-
+	});
+	
+	document.querySelector("#btn-logout").addEventListener("click", ()=>{
+	   document.frm.action="SignOut";
+	   document.frm.method="post";
+	   document.frm.submit();
+	});
+	
 //};
 
 

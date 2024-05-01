@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import hashimotonet.mail.MailSenderService;
+import hashimotonet.mail.MailSendRepository;
 import hashimotonet.model.UserAccount;
 import hashimotonet.service.SignUpService;
 
@@ -27,7 +27,7 @@ public class SignUpController {
     SignUpService service;
     
 	@Autowired
-	MailSenderService mailService;
+	MailSendRepository mailRepo;
 
 	@Autowired
 	HttpServletRequest request;
@@ -43,9 +43,12 @@ public class SignUpController {
 
 	@PostMapping("/SignUp")
 	public String index(@ModelAttribute UserAccount userAccount, HttpSession session) {
-		boolean success = service.execute();
+		String email = request.getParameter("email");
+		String url = "https://google.com/";
+		
+		boolean success = service.execute(email);
 		if (success) {
-			mailService.sendMail();
+			mailRepo.sendRegistMail(url, email);
 			return "mailSent";
 		} else {
 			return "addressDuplicated";

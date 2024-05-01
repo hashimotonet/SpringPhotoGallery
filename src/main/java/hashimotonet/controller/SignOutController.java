@@ -31,7 +31,7 @@ public final class SignOutController {
 		
 		log.info("サインアウトしました。");
 		
-		return "redirect:/";
+		return "/";
 	}
 
 }

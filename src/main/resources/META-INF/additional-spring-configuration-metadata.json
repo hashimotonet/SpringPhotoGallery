@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "sender.mail-address",
+  "type": "java.lang.String",
+  "description": "PhotoGalleryサービスの窓口メールアドレスです'"
+}]}

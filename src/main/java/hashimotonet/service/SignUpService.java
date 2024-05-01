@@ -14,7 +14,7 @@ public class SignUpService {
 	 */
     private Logger log = LogManager.getLogger(SignUpService.class);
     
-    public boolean execute() {
+    public boolean execute(String email) {
     	boolean result = true;
     	
     	/**

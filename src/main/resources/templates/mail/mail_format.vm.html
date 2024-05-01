@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>PhotoGalleryより登録確認メールです</title>
+<body>
+  <h2>PhotoGalleryより登録確認メールです</h2>
+  
+  <h4>
+    PhotoGallery へようこそ！<br>
+    PhotoGalleryは、数あるクラウドサービスへの画像登録サービスを、アプリで実現しようとする開発者からの試みです。<br>
+    当サービスのソースコードは、すべてが公開されています。<br>
+    当サービスは実験的な試みであるため、アップロードされた画像に対する消失などに関する、情報の損失に関しては一切の責任を負うものではありません。<br>
+  </h4>
+  <h4>
+    以下のリンクをクリックして、PhotoGalleryへの登録を完了してください。<br>
+    当リンクの有効期限は30分間です。<br>
+  </h4>
+  【登録のためのURL】<br>
+  <a href="[(${url})]">[(${url})]</a>
+  <br>
+  <hr>
+  <address>Osamu Hashimoto</address>
+</body>
+</html>

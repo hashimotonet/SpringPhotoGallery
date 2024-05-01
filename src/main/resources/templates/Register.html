@@ -18,7 +18,6 @@ window.onload = (event)=>{
 };
 
 function doRegister() {
-	debugger;
 	if (checkInput4Validation()) {
 		frm.action = "SignUp";
 		frm.method = "post";
@@ -30,7 +29,6 @@ function doRegister() {
 }
 
 function checkInput4Validation() {
-	debugger;
 	let flag = true;
 	const email = document.getElementById('email').value;
 	if (!email.match(/.+@.+\..+/)) {
@@ -64,13 +62,14 @@ function checkInput4Validation() {
 	return flag;
 }
 
+/*
 function doSignOut() {
     frm.action = "./SignOut";
     frm.method = "post";
     frm.submit();
 
     return;
-}
+} */
 </script>
 </head>
 <body>
@@ -149,9 +148,6 @@ function doSignOut() {
 		<tr>
 			<td align="center" valign="bottom">
 				<button id="sign-in" type="button" class="btn btn-primary btn-sm" onClick="javascript:doRegister();" >Sign Up</button><br /> <br /> 
-				<input
-					type="button" value="Sign Out" class="btn btn-primary btn-sm"
-					onClick="javascript:doSignOut();" />
 			</td>
 		</tr>
 	</table>
