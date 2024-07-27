@@ -170,8 +170,11 @@ dependencies {
 	implementation group: 'jstl', name: 'jstl', version: '1.2'
 	implementation group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '10.0.22'
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.7.1'
-	runtimeOnly files('jdbc/mysql-connector-java-8.0.25.jar')
+	runtimeOnly files('jdbc/mysql-connector-j-9.0.0.jar')
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	
+	implementation 'org.apache.tomcat.embed:tomcat-embed-core'
+    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 }
 
 test {
